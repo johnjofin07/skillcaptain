@@ -1,0 +1,15 @@
+let num = [1, 2, 3, 4, 5];
+
+let double = num.map((i) => i * 2).filter((x) => x % 2 === 0);
+
+console.log(double);
+
+console.log("for");
+
+for (i = 0; i < num.length; i++) {
+  console.log(num[i]);
+}
+
+console.log("foreach")
+
+num.forEach((x) => console.log(x));

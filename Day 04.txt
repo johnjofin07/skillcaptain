@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="wrap">
+      <p>
+        Furthermore, international cooperation is paramount in tackling global
+        warming. The Paris Agreement, adopted in 2015, serves as a framework for
+        global climate action, aiming to limit global warming to well below 2
+        degrees Celsius above pre-industrial levels. Countries must honor their
+        commitments and strengthen their climate targets to achieve this goal.
+        Civil society, businesses, and individuals also play crucial roles in
+        driving climate action through advocacy, innovation, and sustainable
+        consumption habits.
+      </p>
+      <p class="last__para">
+        Conclusion: Global warming poses an unprecedented threat to human
+        civilization and the natural world.
+      </p>
+
+      <button class="btn__event">Click to change content</button>
+    </div>
+
+    <style>
+      .btn__event {
+        background: #000;
+        color: #fff;
+        border: solid 2px #fff;
+        padding: 10px 25px;
+        cursor: pointer;
+        transition: all ease 300ms;
+        font-family: monospace;
+      }
+
+      .btn__event:hover {
+        background: #2a2a2a;
+      }
+      .wrap {
+        border: solid 2px #ccc;
+        max-width: 600px;
+        padding: 25px;
+      }
+      p {
+        color: #cccccc;
+      }
+
+      body {
+        background: #000;
+        font-family: monospace;
+        height: 100vh;
+        margin: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+    </style>
+
+    <script>
+      let buttonSelect = document.querySelector(".btn__event");
+
+      let para = document.querySelector(".last__para");
+
+      buttonSelect.addEventListener("click", function () {
+        para.textContent =
+          para.textContent === "New Content!!"
+            ? " Conclusion: Global warming poses an unprecedented threat to humancivilization and the natural world."
+            : "New Content!!";
+      });
+    </script>
+  </body>
+</html>

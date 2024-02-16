@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="heading">
+      <h1>Weather City</h1>
+    </div>
+
+    <div class="wrap__weather">
+      <div class="box">
+        <input class="city__input" type="text" placeholder="Enter City Name" />
+        <button class="btn__search">Search</button>
+
+        <div id="errorMessage"></div>
+        <div id="details">
+          <div>City Name: <span id="city">...</span></div>
+          <div>Temperature: <span id="temp">...</span></div>
+          <div>Weather Condition: <span id="weather">...</span></div>
+          <div>Humidity: <span id="humidity">...</span></div>
+          <div>Date & Time: <span id="date">...</span></div>
+        </div>
+      </div>
+    </div>
+
+    <style>
+      body {
+        background: #000;
+        color: rgb(224, 224, 224);
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        font-family: monospace;
+        font-size: 15px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        height: 100vh;
+      }
+      div {
+        margin-bottom: 15px;
+      }
+
+      .wrap__weather {
+        max-width: 600px;
+        width: 100%;
+      }
+
+      input {
+        padding: 10px;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        font-family: monospace;
+        font-size: 15px;
+        margin-bottom: 15px;
+      }
+      .btn__search {
+        background-color: #000;
+        color: #fff;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        font-family: monospace;
+        font-size: 15px;
+        box-shadow: unset;
+        border: solid 2px #ffffff52;
+        padding: 10px;
+        cursor: pointer;
+      }
+      .btn__search:hover {
+        background: #191717;
+      }
+    </style>
+
+    <script>
+      let input__field = document.getElementsByClassName("city__input")[0];
+      let apiKey = "57577d276903113912a6181151ebaf7d";
+
+      document
+        .getElementsByClassName("btn__search")[0]
+        .addEventListener("click", function () {
+          let cityName = input__field.value;
+          async function weatherFunc() {
+            try {
+              let response = await fetch(
+                `https://api.openweathermap.org/data/2.5/forecast?q=${cityName}&appid=${apiKey}`
+              );
+              let data = await response.json();
+              console.log(
+                ` ${cityName}\n Temp: ${data.list[0].main.temp}\n Weather Condition:${data.list[0].weather[0].description} \n Humidity: ${data.list[0].main.humidity} \n Date & Time: ${data.list[0].dt_txt}`
+              );
+
+              document.getElementById("city").innerHTML = cityName;
+              document.getElementById("temp").innerHTML =
+                data.list[0].main.temp;
+              document.getElementById("weather").innerHTML =
+                data.list[0].weather[0].description;
+              document.getElementById("humidity").innerHTML =
+                data.list[0].main.humidity;
+
+              document.getElementById("date").innerHTML = data.list[0].dt_txt;
+
+              document.getElementsByTagName("body")[0].style.backgroundColor =
+                "#000";
+              document.getElementById("errorMessage").style.display = "none";
+              document.getElementById("details").style.display = "block";
+            } catch {
+              // console.error("City name is incorrect");
+              document.getElementById("errorMessage").innerHTML =
+                "City name is incorrect :(";
+
+              document.getElementsByTagName("body")[0].style.backgroundColor =
+                "#2a2a2a";
+              document.getElementById("errorMessage").style.display = "block";
+              document.getElementById("details").style.display = "none";
+            }
+          }
+          weatherFunc();
+        });
+
+      document
+        .getElementsByClassName("city__input")[0]
+        .addEventListener("keypress", function (e) {
+          if (e.keyCode === 13 || e.which === 13) {
+            document.getElementsByClassName("btn__search")[0].click();
+          }
+        });
+    </script>
+  </body>
+</html>

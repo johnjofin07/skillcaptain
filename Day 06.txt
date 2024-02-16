@@ -1,0 +1,13 @@
+let book = {
+  title: "Atomic habits",
+  author: "satoshi",
+  year: "2014",
+  isAvailable: "yes",
+};
+book.pageCount = "300";
+
+delete book.author;
+
+console.log(book);
+
+console.log(book.title);

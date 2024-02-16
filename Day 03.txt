@@ -1,0 +1,12 @@
+const prompt = require("prompt-sync")();
+
+let C = prompt("Please enter temperature value:");
+
+function tempToFaren(C) {
+  console.log(C);
+  F = (C * 9) / 5 + 32;
+  return F;
+}
+
+let Temp = tempToFaren(C);
+console.log(`${C}C is ${Temp}F`);

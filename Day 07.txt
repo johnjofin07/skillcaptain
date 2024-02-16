@@ -1,0 +1,14 @@
+//constuctor + method
+
+function rectangle(height, width) {
+  this.height = height;
+  this.width = width;
+  this.calculateArea = function (height, width) {
+    return `height = ${height}, width = ${width}, area = ${height * width}`;
+  };
+}
+
+let rectangle1 = new rectangle("10", "5");
+
+console.log(rectangle1);
+console.log(rectangle1.calculateArea(10, 6));
